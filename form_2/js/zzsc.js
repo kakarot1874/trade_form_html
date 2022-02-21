@@ -2,6 +2,25 @@
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
+var form_data = {
+	material: '',
+	ip: '',
+	price: '',
+	quantity: '',
+	email: '',
+	phone: '',
+	message: ''
+}
+
+var data_id_map = {
+	material: 'form-field-field_28031fa',
+	ip: 'form-field-field_22cd1a1',
+	price: 'form-field-field_91a8a13',
+	quantity: 'form-field-field_2e7ff13',
+	email: 'form-field-field_41742fd',
+	phone: 'form-field-field_2c7ef85',
+	message: 'form-field-field_aa3e9d8'
+}
 
 $(".next").click(function(){
 	if(animating) return false;
@@ -28,7 +47,7 @@ $(".next").click(function(){
 			current_fs.css({'transform': 'scale('+scale+')'});
 			next_fs.css({'left': left, 'opacity': opacity});
 		}, 
-		duration: 800, 
+		duration: 500, 
 		complete: function(){
 			current_fs.hide();
 			animating = false;
@@ -36,7 +55,17 @@ $(".next").click(function(){
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
+
+	fillTheOriginForm()
 });
+
+function fillTheOriginForm() {
+	for( key in data_id_map){
+		console.log(key + ':' +data_id_map[key]+ ':' +form_data[key])
+		$('#'+data_id_map[key]).val(form_data[key])
+	}
+}
+
 
 $(".previous").click(function(){
 	if(animating) return false;
@@ -63,7 +92,7 @@ $(".previous").click(function(){
 			current_fs.css({'left': left});
 			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
 		}, 
-		duration: 800, 
+		duration: 500, 
 		complete: function(){
 			current_fs.hide();
 			animating = false;
@@ -73,6 +102,51 @@ $(".previous").click(function(){
 	});
 });
 
-$(".submit").click(function(){
-	return false;
+$(".selector").click(function (e) {
+	var obj 
+	// 取消选中
+	if($(e.target).hasClass('selected') || $(e.target).parent().hasClass('selected')) {
+		if($(e.target).hasClass('selected')) {
+			obj = $(e.target)
+		}
+		if($(e.target).parent().hasClass('selected')){
+			obj = $(e.target).parent()
+		}
+		obj.removeClass('selected')
+		var data = obj.data()
+		form_data[data['target']] = ''
+	}
+	// 确认选中
+	else {
+		if($(e.target).is('span')){
+			obj = $(e.target).parent()
+		}
+		else {
+			obj = $(e.target)
+		}
+		obj.siblings().removeClass('selected')
+		obj.addClass('selected')
+		var data = obj.data()
+		form_data[data['target']] = data['value']
+	}
+})
+
+$('input[data-target]').bind("input propertychange", function(e) {
+	form_data[$(e.target).data('target')] = $(e.target).val()
+	$('input[data-target='+$(e.target).data('target')+']').val($(e.target).val())
+})
+$('textarea[data-target]').bind("input propertychange", function(e) {
+	form_data[$(e.target).data('target')] = $(e.target).val()
+	$('textarea[data-target='+$(e.target).data('target')+']').val($(e.target).val())
+})
+
+// $(".submit").click(function(){
+// 	console.log(form_data)
+// 	return false;
+// })
+
+$('#new_submit_btn').click(function() {
+	console.log(form_data)
+	fillTheOriginForm()
+	$("#origin_submit_btn").click()
 })

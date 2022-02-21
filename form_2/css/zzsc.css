@@ -1,26 +1,60 @@
 /*custom font*/
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
+/* @import url(http://fonts.googleapis.com/css?family=Montserrat); */
 
-/*basic reset*/
-* {margin: 0; padding: 0;}
-
-html {
-	height: 100%;
-	/*Image only BG fallback*/
-	background: url('http://thecodeplayer.com/uploads/media/gs.png');
-	/*background = gradient + image pattern combo*/
-	background: 
-		linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)), 
-		url('http://thecodeplayer.com/uploads/media/gs.png');
+.selectors {
+	text-align: left;
 }
 
-body {
-	font-family: montserrat, arial, verdana;
+.selector {
+    line-height: 60px;
+    font-size: 13px;
+    border-bottom: solid 1px #ddd;
+    letter-spacing: 1px;
+    padding-left: 15px;
+    cursor: pointer;
+    color: #000;
 }
+
+.selector:before {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+    content: '';
+    margin-right: 5px;
+    background: #fff;
+    color: #555;
+}
+
+.selected {
+    text-decoration: none;
+    color: #111;
+    background: #efefef;
+}
+
+.selector.selected:before {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 0 solid #111;
+    background: url(http://trade-form-html.oss-us-west-1.aliyuncs.com/image/ui-selected-radio.svg) 0 0 no-repeat;
+    background-size: 20px 20px;
+    content: '';
+    margin-right: 5px;
+}
+
+
 /*form styles*/
 #msform {
-	width: 400px;
-	margin: 50px auto;
+	/* width: 800px; */
+	/* margin: 50px auto; */
 	text-align: center;
 	position: relative;
 }
@@ -32,11 +66,11 @@ body {
 	padding: 20px 30px;
 	
 	box-sizing: border-box;
-	width: 80%;
-	margin: 0 10%;
+	/* width: 80%; */
+	/* margin: 0 10%; */
 	
 	/*stacking fieldsets above each other*/
-	position: absolute;
+	/* position: absolute; */
 }
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
@@ -91,7 +125,7 @@ body {
 }
 #progressbar li {
 	list-style-type: none;
-	color: white;
+	color: #333;
 	text-transform: uppercase;
 	font-size: 9px;
 	width: 33.33%;
@@ -106,7 +140,7 @@ body {
 	display: block;
 	font-size: 10px;
 	color: #333;
-	background: white;
+	background: #ccc;
 	border-radius: 3px;
 	margin: 0 auto 5px auto;
 }
@@ -115,7 +149,7 @@ body {
 	content: '';
 	width: 100%;
 	height: 2px;
-	background: white;
+	background: #ccc;
 	position: absolute;
 	left: -50%;
 	top: 9px;
