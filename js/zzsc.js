@@ -160,7 +160,7 @@ $('#new_submit_btn').click(async function(e) {
 			$('textarea').val('');
 		},
 		error: function() {
-			alert('submit failure')
+			alert('Submit Failure')
 		}
 	})
 })
