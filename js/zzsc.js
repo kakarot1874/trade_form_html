@@ -147,7 +147,8 @@ $('#new_submit_btn').click(async function(e) {
 	for( key in map ) {
 		send_data[map[key]] = form_data[key]
 	}
-	console.log(send_data)
+
+	$('.loading').show()
 
 	$.ajax({
 		url: 'https://unecklace.com/wp-admin/admin-ajax.php',
@@ -158,9 +159,12 @@ $('#new_submit_btn').click(async function(e) {
 			alert('Submit Successfully')
 			$('input').not('[type="button"]').val('');
 			$('textarea').val('');
+			$('.loading').hide()
 		},
 		error: function() {
 			alert('Submit Failure')
+			$('.loading').hide()
+			// TODO: 跳转感谢页
 		}
 	})
 })
