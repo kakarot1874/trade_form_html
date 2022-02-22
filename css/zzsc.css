@@ -1,6 +1,13 @@
 /*custom font*/
 /* @import url(http://fonts.googleapis.com/css?family=Montserrat); */
 
+.loading {
+	position: absolute;
+	top: calc(35% - 100px);
+	left: calc(50% - 100px);
+	display: none;
+}
+
 .selectors {
 	text-align: left;
 }
@@ -49,7 +56,6 @@
     content: '';
     margin-right: 5px;
 }
-
 
 /*form styles*/
 #msform {
@@ -109,6 +115,7 @@
 	text-transform: uppercase;
 	color: #2C3E50;
 	margin-bottom: 10px;
+	font-family: "Catamaran", sans-serif;
 }
 .fs-subtitle {
 	font-weight: normal;
