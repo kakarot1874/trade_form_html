@@ -156,15 +156,15 @@ $('#new_submit_btn').click(async function(e) {
 		data: send_data,
 		success: function(result) {
 			console.log('success: ' + result.data)
-			alert('Submit Successfully')
+			// alert('Submit Successfully')
 			$('input').not('[type="button"]').val('');
 			$('textarea').val('');
 			$('.loading').hide()
+			window.location.href="https://unecklace.com/thank-you-for-your-enquiry";
 		},
 		error: function() {
-			alert('Submit Failure')
 			$('.loading').hide()
-			// TODO: 跳转感谢页
+			alert('Submit Failure')
 		}
 	})
 })
