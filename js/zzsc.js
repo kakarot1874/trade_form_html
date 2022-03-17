@@ -144,6 +144,7 @@ $('textarea[data-target]').bind("input propertychange", function(e) {
 $('#new_submit_btn').click(async function(e) {
 	fillTheOriginForm()
 
+	// TODO: 判断Email和phone必填
 	for( key in map ) {
 		send_data[map[key]] = form_data[key]
 	}

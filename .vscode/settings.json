@@ -3,5 +3,6 @@
         "elementor",
         "progressbar",
         "propertychange"
-    ]
+    ],
+    "nuxt.isNuxtApp": false
 }
